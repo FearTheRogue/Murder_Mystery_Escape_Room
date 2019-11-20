@@ -15,13 +15,10 @@ public class PickUpItem : MonoBehaviour
 
     void OnMouseDown()
     {
-        //RaycastHit hit;
+        RaycastHit hit;
 
-        //if (Physics.Raycast(transform.position, transform.localPosition, out hit, maxDistance))
-        //{
-          //  Debug.Log("Object: " + this.name);
-
-            //GetComponent<BoxCollider>().enabled = false;
+        if (Physics.Raycast(fps.transform.position, transform.TransformDirection(Vector3.forward), out hit, maxDistance))
+        {
             GetComponent<Rigidbody>().useGravity = false;
             GetComponent<Rigidbody>().freezeRotation = true;
 
@@ -30,7 +27,7 @@ public class PickUpItem : MonoBehaviour
 
             nameText.text = "Name: " + nameOfObject;
             DescText.text = "Description: " + DescOfObject;
-        //}
+        }
     }
 
     void OnMouseUp()
@@ -49,29 +46,34 @@ public class PickUpItem : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(fps.transform.position, transform.TransformDirection(Vector3.forward), out hit, maxDistance)){
+        if (Physics.Raycast(fps.transform.position, transform.TransformDirection(Vector3.forward), out hit, maxDistance)) 
+        { 
             Debug.DrawRay(fps.transform.position, fps.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
             GetComponent<MeshRenderer>().material.color = Color.red;
+        }
+        else
+        {
+            GetComponent<MeshRenderer>().material.color = Color.white;
         }
         //Debug.Log("Nope");
     }
 
-    void OnMouseExit()
+    void OnMouseExit() 
     {
         GetComponent<MeshRenderer>().material.color = Color.white;
     }
 
-    void FixedUpdate()
-    {
-        RaycastHit hit;
+    //void FixedUpdate()
+    //{
+    //    RaycastHit hit;
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (Physics.Raycast(theDest.position, transform.TransformDirection(Vector3.forward), out hit, maxDistance))
-            {
-                print("Found an object - distance: " + hit.distance);
-                Debug.DrawRay(theDest.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
-            }
-        }
-    }
+    //    if (Input.GetMouseButtonDown(1))
+    //    {
+    //        if (Physics.Raycast(theDest.position, transform.TransformDirection(Vector3.forward), out hit, maxDistance))
+    //        {
+    //            print("Found an object - distance: " + hit.distance);
+    //            Debug.DrawRay(theDest.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
+    //        }
+    //    }
+    //}
 }

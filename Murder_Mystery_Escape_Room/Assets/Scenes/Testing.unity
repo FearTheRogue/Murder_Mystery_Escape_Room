@@ -344,7 +344,7 @@ MonoBehaviour:
   DescText: {fileID: 1836579188}
   nameOfObject: The Cube
   DescOfObject: This object has no value what so ever! Sorry!
-  maxDistance: 5
+  maxDistance: 8
 --- !u!54 &191202854
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -473,7 +473,7 @@ MonoBehaviour:
   DescText: {fileID: 1836579188}
   nameOfObject: A Sphere
   DescOfObject: Now this might be interesting!
-  maxDistance: 5
+  maxDistance: 8
 --- !u!54 &207083002
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -913,9 +913,9 @@ MonoBehaviour:
   theDest: {fileID: 465780455}
   nameText: {fileID: 1199175520}
   DescText: {fileID: 1836579188}
-  nameOfObject: The Cube
-  DescOfObject: This object has no value what so ever! Sorry!
-  maxDistance: 5
+  nameOfObject: A different Cube
+  DescOfObject: Just a regular old cube
+  maxDistance: 8
 --- !u!54 &446543676
 Rigidbody:
   m_ObjectHideFlags: 0

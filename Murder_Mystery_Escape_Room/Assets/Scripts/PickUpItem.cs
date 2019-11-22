@@ -11,7 +11,7 @@ public class PickUpItem : MonoBehaviour
 
     public string nameOfObject, DescOfObject;
 
-    float maxDistance = 10f;
+    public float maxDistance = 10f;
 
     void OnMouseDown()
     {
@@ -62,18 +62,4 @@ public class PickUpItem : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material.color = Color.white;
     }
-
-    //void FixedUpdate()
-    //{
-    //    RaycastHit hit;
-
-    //    if (Input.GetMouseButtonDown(1))
-    //    {
-    //        if (Physics.Raycast(theDest.position, transform.TransformDirection(Vector3.forward), out hit, maxDistance))
-    //        {
-    //            print("Found an object - distance: " + hit.distance);
-    //            Debug.DrawRay(theDest.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
-    //        }
-    //    }
-    //}
 }

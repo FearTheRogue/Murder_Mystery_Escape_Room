@@ -13,6 +13,19 @@ public class PickUpItem : MonoBehaviour
 
     public float maxDistance = 10f;
 
+   public IsPlayerMoving playerMoving;
+
+    public bool isMoving;
+
+    public Image pickUpCursor;
+
+    private void Start()
+    {
+        isMoving = playerMoving.GetComponent<IsPlayerMoving>().isPlayerMoving;
+
+        pickUpCursor.GetComponent<Image>();
+    }
+
     void OnMouseDown()
     {
         RaycastHit hit;
@@ -27,6 +40,8 @@ public class PickUpItem : MonoBehaviour
 
             nameText.text = "Name: " + nameOfObject;
             DescText.text = "Description: " + DescOfObject;
+
+            playerMoving.GetComponent<IsPlayerMoving>().isPlayerMoving = false;
         }
     }
 
@@ -40,6 +55,8 @@ public class PickUpItem : MonoBehaviour
 
         nameText.text = "";
         DescText.text = "";
+
+        playerMoving.GetComponent<IsPlayerMoving>().isPlayerMoving = true;
     }
 
     void OnMouseOver()
@@ -50,10 +67,12 @@ public class PickUpItem : MonoBehaviour
         { 
             Debug.DrawRay(fps.transform.position, fps.transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
             GetComponent<MeshRenderer>().material.color = Color.red;
+            pickUpCursor.enabled = true;
         }
         else
         {
             GetComponent<MeshRenderer>().material.color = Color.white;
+            pickUpCursor.enabled = false;
         }
         //Debug.Log("Nope");
     }
@@ -61,5 +80,6 @@ public class PickUpItem : MonoBehaviour
     void OnMouseExit() 
     {
         GetComponent<MeshRenderer>().material.color = Color.white;
+        pickUpCursor.enabled = false;
     }
 }

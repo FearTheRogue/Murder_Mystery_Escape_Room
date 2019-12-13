@@ -7,8 +7,11 @@ public class DisplayObject : MonoBehaviour
 {
     public Text nameOfObjectText, descOfObjectText;
 
+    public Image textBG;
+
     public void DisplayObjectInfo(Transform selection)
     {
+        textBG.enabled = true;
         string name = selection.GetComponent<Object>().nameOfObject;
         string desc = selection.GetComponent<Object>().DescOfObject;
 
@@ -18,6 +21,7 @@ public class DisplayObject : MonoBehaviour
 
     public void RemoveObjectInfo(Transform selection)
     {
+        textBG.enabled = false;
         nameOfObjectText.text = "";
         descOfObjectText.text = "";
     }

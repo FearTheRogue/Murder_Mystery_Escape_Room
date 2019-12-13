@@ -8,9 +8,11 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 12f;
 
-    public IsPlayerMoving playerMoving;
+    //public IsPlayerMoving playerMoving;
 
     public bool isPlayerMoving;
+
+    public ObjectPickUp objectPickUp;
 
     private void Start()
     {
@@ -22,7 +24,8 @@ public class PlayerMovement : MonoBehaviour
     {
         //isPlayerMoving = playerMoving.GetComponent<IsPlayerMoving>().isPlayerMoving;
 
-        if (playerMoving.GetComponent<IsPlayerMoving>().isPlayerMoving)
+        //if (playerMoving.GetComponent<IsPlayerMoving>().isPlayerMoving)
+        if(!objectPickUp.GetComponent<ObjectPickUp>().isObjectPickUp)
         {
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");

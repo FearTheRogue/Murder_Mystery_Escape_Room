@@ -6,8 +6,10 @@ public class RotatingItems : MonoBehaviour
 {
     public float rotationSpeed = 20;
 
-    private void OnMouseDrag()
+    public void OnMouseDrag()
     {
+        Debug.Log("This is being called");
+
         float rotX = Input.GetAxis("Mouse X") * rotationSpeed * Mathf.Deg2Rad;
         float rotY = Input.GetAxis("Mouse Y") * rotationSpeed * Mathf.Deg2Rad;
 

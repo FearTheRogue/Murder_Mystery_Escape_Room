@@ -12,7 +12,9 @@ public class MouseLook : MonoBehaviour
 
     private float xRotation = 0f;
 
-    public IsPlayerMoving playerMoving;
+    //public IsPlayerMoving playerMoving;
+
+    public ObjectPickUp objectPickUp;
 
     // Start is called before the first frame update
     void Start()
@@ -23,7 +25,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerMoving.GetComponent<IsPlayerMoving>().isPlayerMoving)
+        if (!objectPickUp.GetComponent<ObjectPickUp>().isObjectPickUp)
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;

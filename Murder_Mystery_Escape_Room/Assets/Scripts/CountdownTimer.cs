@@ -17,7 +17,6 @@ public class CountdownTimer : MonoBehaviour
     {
         if (timerText != null)
         {
-            time = 1200;
             timerText.text = "20:00:000";
             InvokeRepeating("UpdateTimer", 0.0f, 0.01667f);
         }
@@ -30,8 +29,8 @@ public class CountdownTimer : MonoBehaviour
             time -= Time.deltaTime;
             string minutes = Mathf.Floor(time / 60).ToString("00");
             string seconds = (time % 60).ToString("00");
-            string fraction = ((time * 100) % 100).ToString("000");
-            timerText.text = minutes + ":" + seconds + ":" + fraction;
+            //string fraction = ((time * 100) % 100).ToString("000");
+            timerText.text = minutes + ":" + seconds;
         }
     }
 }

@@ -523,6 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfObject: The Cube
   DescOfObject: This object has no value what so ever! Sorry!
+  isObjectInteractable: 0
   pickUpCursor: {fileID: 1319372454}
 --- !u!65 &191202855
 BoxCollider:
@@ -645,6 +646,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfObject: A Sphere
   DescOfObject: Now this might be interesting!
+  isObjectInteractable: 0
   pickUpCursor: {fileID: 1319372454}
 --- !u!65 &207083003
 BoxCollider:
@@ -1098,6 +1100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfObject: Its a fire place
   DescOfObject: nuff said really
+  isObjectInteractable: 0
   pickUpCursor: {fileID: 0}
 --- !u!65 &380684258
 BoxCollider:
@@ -1227,6 +1230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfObject: A different Cube
   DescOfObject: Just a regular old cube
+  isObjectInteractable: 0
   pickUpCursor: {fileID: 1319372454}
 --- !u!65 &446543677
 BoxCollider:
@@ -2199,6 +2203,7 @@ GameObject:
   - component: {fileID: 850995674}
   - component: {fileID: 850995675}
   - component: {fileID: 850995673}
+  - component: {fileID: 850995676}
   m_Layer: 0
   m_Name: Object Manager
   m_TagString: Untagged
@@ -2252,6 +2257,23 @@ MonoBehaviour:
   theDestination: {fileID: 465780455}
   isObjectPickUp: 0
   displayObject: {fileID: 850995673}
+  _object: {fileID: 0}
+--- !u!114 &850995676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850995672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ad7b78460f5054d844102acc132f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minFOV: 15
+  maxFOV: 90
+  sensitivity: 20
+  ObjectPickUp: {fileID: 850995675}
 --- !u!1 &875770335
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,6 +2569,7 @@ MonoBehaviour:
   nameOfObject: Glass
   DescOfObject: Expensive type of glass, smells kind of funny to me though! Whiskey
     mixed with.. Well, I'm not really sure
+  isObjectInteractable: 1
   pickUpCursor: {fileID: 1319372454}
 --- !u!136 &1052541009
 CapsuleCollider:
@@ -4082,6 +4105,7 @@ GameObject:
   - component: {fileID: 1986969073}
   - component: {fileID: 1986969078}
   - component: {fileID: 1986969077}
+  - component: {fileID: 1986969079}
   m_Layer: 0
   m_Name: Rat Poision
   m_TagString: Object
@@ -4189,7 +4213,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOfObject: The first clue
   DescOfObject: Now this is interested
+  isObjectInteractable: 1
   pickUpCursor: {fileID: 1319372454}
+--- !u!114 &1986969079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986969072}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40ad7b78460f5054d844102acc132f8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minFOV: 15
+  maxFOV: 90
+  sensitivity: 20
+  ObjectPickUp: {fileID: 0}
 --- !u!1 &2072089430
 GameObject:
   m_ObjectHideFlags: 0
@@ -4510,6 +4551,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_BackGroundColor.b
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2278344908303112158, guid: db94b9367084aab49800fd1a1c68497d,
+        type: 3}
+      propertyPath: field of view
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2278344906311637919, guid: db94b9367084aab49800fd1a1c68497d,
         type: 3}

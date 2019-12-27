@@ -13,6 +13,8 @@ public class Object : MonoBehaviour
 
     //public bool isMoving;
 
+    public bool isObjectInteractable;
+
     public Image pickUpCursor;
 
     private void Start()

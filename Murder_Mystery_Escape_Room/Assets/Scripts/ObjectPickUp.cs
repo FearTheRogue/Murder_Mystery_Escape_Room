@@ -15,12 +15,14 @@ public class ObjectPickUp : MonoBehaviour
     public bool isObjectPickUp;
 
     public DisplayObject displayObject;
+    public Object _object;
 
     void Start()
     {
         isObjectPickUp = false;
 
         displayObject.GetComponent<DisplayObject>();
+        _object.GetComponent<Object>();
     }
 
     void Update()
@@ -50,7 +52,7 @@ public class ObjectPickUp : MonoBehaviour
                 }
                 else
                 {
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetMouseButtonDown(0) && _object.isObjectInteractable)
                     {
                         OnHoldObject(selection);
                     }

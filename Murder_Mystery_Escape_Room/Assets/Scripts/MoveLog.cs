@@ -8,29 +8,40 @@ public class MoveLog : MonoBehaviour
     public Animator logAnim;
     public Image pickUpCursor;
 
+    bool animationHasPlayed;
+
     void Start()
     {
         logAnim = gameObject.GetComponent<Animator>();
         pickUpCursor.GetComponent<Image>();
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        animationHasPlayed = false;
     }
 
     private void OnMouseDown()
     {
         logAnim.SetTrigger("Active");
+
+        animationHasPlayed = true;
     }
 
     private void OnMouseOver()
     {
+        if(!animationHasPlayed)
         pickUpCursor.enabled = true;
+        else
+        {
+            return;
+        }
     }
 
     private void OnMouseExit()
     {
+        if(!animationHasPlayed)
         pickUpCursor.enabled = false;
+        else
+        {
+            return;
+        }
     }
 }

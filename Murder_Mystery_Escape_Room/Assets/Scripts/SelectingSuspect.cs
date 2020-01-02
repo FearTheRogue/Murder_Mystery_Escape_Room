@@ -8,6 +8,8 @@ public class SelectingSuspect : MonoBehaviour
     public Button suspect1, suspect2, suspect3, suspect4;
     public Text suspectName1, suspectName2, suspectName3, suspectName4;
 
+    public GameObject correctSuspect;
+
     public void Suspect1()
     {
         Debug.Log("You have chosen " + suspectName1.text + " to be the killer");
@@ -26,6 +28,10 @@ public class SelectingSuspect : MonoBehaviour
     public void Suspect4()
     {
         Debug.Log("You have chosen " + suspectName4.text + " to be the killer");
+
+
+
+        correctSuspect.SetActive(true);
     }
 
     public Button[] spts;

@@ -1,28 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectPickUp : MonoBehaviour
 {
     public string objectTag = "Object";
 
     public float maxDistance;
+    public int mask = 1 << 8;
 
     private Transform selection;
     public Transform theDestination;
 
     private Vector3 originalPos;
-    private Quaternion originalRot;
+    public Quaternion originalRot;
 
     public bool isObjectPickUp;
 
     public DisplayObject displayObject;
-    public Object _object;
+    //public Object _object;
+
+    public Image pickUpCursor;
 
     void Start()
     {
         isObjectPickUp = false;
 
         displayObject.GetComponent<DisplayObject>();
-        _object.GetComponent<Object>();
+        //_object.GetComponent<Object>();
     }
 
     void Update()
@@ -33,14 +37,17 @@ public class ObjectPickUp : MonoBehaviour
 
         selection = null;
 
-        if(Physics.Raycast(ray, out hit, maxDistance))
+        if (Physics.Raycast(ray, out hit, maxDistance, mask))
         {
             Transform objectHit = hit.transform;
 
             if (objectHit.CompareTag(objectTag))
             {
                 selection = objectHit;
-                
+
+                if (!isObjectPickUp) 
+                    pickUpCursor.enabled = true;
+
                 if (Input.GetMouseButtonDown(1))
                 {
                     OnDropObject(selection);
@@ -52,24 +59,30 @@ public class ObjectPickUp : MonoBehaviour
                 }
                 else
                 {
-                    if (Input.GetMouseButtonDown(0) && _object.isObjectInteractable)
+                    if (Input.GetMouseButtonDown(0))
                     {
                         OnHoldObject(selection);
                     }
                 }
             }
         }
+        else
+        {
+            pickUpCursor.enabled = false;
+        }
     }
 
     void OnHoldObject(Transform selection)
     {
+        pickUpCursor.enabled = false;
+
         isObjectPickUp = true;
 
         originalPos = new Vector3(selection.transform.position.x, selection.transform.position.y, selection.transform.position.z);
-        originalRot = transform.rotation;
+        //originalRot = transform.localRotation;
+        originalRot = new Quaternion(selection.transform.rotation.x, selection.transform.rotation.y, selection.transform.rotation.z,0);
 
         selection.position = theDestination.transform.position;
-
         
         displayObject.DisplayObjectInfo(selection);
     }

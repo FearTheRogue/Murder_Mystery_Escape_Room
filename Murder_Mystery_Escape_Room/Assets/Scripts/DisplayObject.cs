@@ -9,8 +9,19 @@ public class DisplayObject : MonoBehaviour
 
     public Image textBG;
 
+    void Start()
+    {
+        nameOfObjectText.enabled = false;
+        descOfObjectText.enabled = false;
+
+        textBG.enabled = false;
+    }
+
     public void DisplayObjectInfo(Transform selection)
     {
+        nameOfObjectText.enabled = true;
+        descOfObjectText.enabled = true;
+
         textBG.enabled = true;
         string name = selection.GetComponent<Object>().nameOfObject;
         string desc = selection.GetComponent<Object>().DescOfObject;

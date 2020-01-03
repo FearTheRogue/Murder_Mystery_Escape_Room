@@ -15,13 +15,13 @@ public class Object : MonoBehaviour
 
     public bool isObjectInteractable;
 
-    public Image pickUpCursor;
+    //public Image pickUpCursor;
 
     private void Start()
     {
         //isMoving = playerMoving.GetComponent<IsPlayerMoving>().isPlayerMoving;
-        if(pickUpCursor != null)
-        pickUpCursor.GetComponent<Image>();
+        //if(pickUpCursor != null)
+        //pickUpCursor.GetComponent<Image>();
 
         //originalPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
        // originalRot = transform.rotation;

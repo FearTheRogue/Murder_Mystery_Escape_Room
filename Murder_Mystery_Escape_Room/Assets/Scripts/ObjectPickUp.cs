@@ -28,6 +28,8 @@ public class ObjectPickUp : MonoBehaviour
 
     public Animator anim;
 
+    public bool isRequirementsMet;
+
     void Start()
     {
         isObjectPickUp = false;
@@ -52,18 +54,29 @@ public class ObjectPickUp : MonoBehaviour
                 selection = objectHit;
 
                 PickingUpObject(selection);
+            } else
+            {
+                pickUpCursor.enabled = false;
             }
 
             if (objectHit.CompareTag(interactableTag))
             {
                 selection = objectHit;
 
+                interactCursor.enabled = true;
+
                 InteractWithObject(selection);
+            }
+            else
+            {
+                interactCursor.enabled = false;
             }
 
             if (objectHit.CompareTag(animationTag))
             {
                 selection = objectHit;
+
+                interactCursor.enabled = true;
 
                 ObjectWithAnimation(selection);
             }
@@ -84,7 +97,7 @@ public class ObjectPickUp : MonoBehaviour
 
     void PickingUpObject(Transform selection)
     {
-        if (!isObjectPickUp)
+         if (!isObjectPickUp)
             pickUpCursor.enabled = true;
 
         if (Input.GetMouseButtonDown(1))
@@ -107,24 +120,30 @@ public class ObjectPickUp : MonoBehaviour
 
     void InteractWithObject(Transform selection)
     {
-        interactCursor.enabled = true;
-
         if (Input.GetMouseButtonDown(0))
         {
             displayObject.DisplayObjectInfo(selection);
+        } 
+        else if (Input.GetMouseButtonDown(1))
+        {
+            displayObject.RemoveObjectInfo(selection);
         }
     }
 
     void ObjectWithAnimation(Transform selection)
     {
-        interactCursor.enabled = true;
-
+        
         anim = selection.GetComponent<Animator>();
 
         if (Input.GetMouseButtonDown(0))
         {
-            anim.SetTrigger("Active");
-        }
+            displayObject.DisplayObjectInfo(selection);
+
+            if (isRequirementsMet)
+            { 
+                anim.SetTrigger("Active");
+            }
+        }       
     }
 
     void ObjectToInventory(Transform selection)
@@ -133,11 +152,10 @@ public class ObjectPickUp : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
+            isRequirementsMet = true;
             Destroy(selection.gameObject);
-            isObjectPickUp = false; 
+            isObjectPickUp = false;
         }
-
-        
     }
 
     void OnHoldObject(Transform selection)

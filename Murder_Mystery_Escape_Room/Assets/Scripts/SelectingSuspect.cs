@@ -10,28 +10,47 @@ public class SelectingSuspect : MonoBehaviour
 
     public GameObject correctSuspect;
 
+    public GameObject suspect1Info, suspect2Info, suspect3Info, suspect4Info;
+
     public void Suspect1()
     {
+        suspect1Info.SetActive(true);
         Debug.Log("You have chosen " + suspectName1.text + " to be the killer");
     }
 
     public void Suspect2()
     {
+        suspect2Info.SetActive(true);
         Debug.Log("You have chosen " + suspectName2.text + " to be the killer");
     }
 
     public void Suspect3()
     {
+        suspect3Info.SetActive(true);
         Debug.Log("You have chosen " + suspectName3.text + " to be the killer");
     }
 
     public void Suspect4()
     {
+        suspect4Info.SetActive(true);
         Debug.Log("You have chosen " + suspectName4.text + " to be the killer");
 
+        //correctSuspect.SetActive(true);
+    }
 
-
-        correctSuspect.SetActive(true);
+    void Update()
+    {
+        if(suspect1Info.activeInHierarchy || suspect2Info.activeInHierarchy ||
+            suspect3Info.activeInHierarchy || suspect4Info.activeInHierarchy)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                suspect1Info.SetActive(false);
+                suspect2Info.SetActive(false);
+                suspect3Info.SetActive(false);
+                suspect4Info.SetActive(false);
+            }
+        }
     }
 
     public Button[] spts;

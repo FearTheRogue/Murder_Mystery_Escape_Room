@@ -7,13 +7,19 @@ public class Object : MonoBehaviour
 {
     //public Text nameText, DescText;
 
-    public string nameOfObject, DescOfObject;
+    [Header("Name and Description of Object")]
+    public string nameOfObject;
+    public string DescOfObject;
 
     //public IsPlayerMoving playerMoving;
 
     //public bool isMoving;
 
+    [Header("Can the Object be Interacted with")]
     public bool isObjectInteractable;
+
+    [Header("Only for Object that unlock clues")]
+    public int clueInt;
 
     //public Image pickUpCursor;
 
@@ -25,6 +31,7 @@ public class Object : MonoBehaviour
 
         //originalPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
        // originalRot = transform.rotation;
+
     }
 
     /* void OnMouseDown()

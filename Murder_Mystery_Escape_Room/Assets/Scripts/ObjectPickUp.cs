@@ -12,11 +12,13 @@ public class ObjectPickUp : MonoBehaviour
     public float maxDistance;
     public int mask = 1 << 8;
 
+    //public string objectRequiredToPass;
+
     public Transform selection;
     public Transform theDestination;
 
     private Vector3 originalPos;
-    public Quaternion originalRot;
+    private Quaternion originalRot;
 
     public bool isObjectPickUp;
 
@@ -29,6 +31,9 @@ public class ObjectPickUp : MonoBehaviour
     public Animator anim;
 
     public bool isRequirementsMet;
+
+    public Transform selectedObject;
+    public Clues clues;
 
     void Start()
     {
@@ -132,17 +137,22 @@ public class ObjectPickUp : MonoBehaviour
 
     void ObjectWithAnimation(Transform selection)
     {
-        
         anim = selection.GetComponent<Animator>();
+
+        selectedObject = selection;
 
         if (Input.GetMouseButtonDown(0))
         {
             displayObject.DisplayObjectInfo(selection);
 
-            if (isRequirementsMet)
-            { 
+            if (selectedObject.GetComponent<Object>().isObjectInteractable)
+            {
                 anim.SetTrigger("Active");
             }
+         //   if (isRequirementsMet)
+           // { 
+              //  anim.SetTrigger("Active");
+            //}
         }       
     }
 
@@ -152,6 +162,8 @@ public class ObjectPickUp : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
+            clues.CheckClue(selection.GetComponent<Object>().clueInt);
+
             isRequirementsMet = true;
             Destroy(selection.gameObject);
             isObjectPickUp = false;

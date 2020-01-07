@@ -31,6 +31,11 @@ public class CountdownTimer : MonoBehaviour
             string seconds = (time % 60).ToString("00");
             //string fraction = ((time * 100) % 100).ToString("000");
             timerText.text = minutes + ":" + seconds;
+
+            if(time <= 0)
+            {
+                GameManager.instance.TimeRanOutLose();
+            }
         }
     }
 }

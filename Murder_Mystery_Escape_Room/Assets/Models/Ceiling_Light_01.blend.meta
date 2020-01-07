@@ -3,7 +3,17 @@ guid: 00ca78cf779167440a30b779a15ceb65
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Brass
+    second: {fileID: 2100000, guid: 1906b6c519d2ad846b09bdd8fc76b489, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GlossyGlass
+    second: {fileID: 2100000, guid: c6443eaf802787045b6024408065b6d7, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

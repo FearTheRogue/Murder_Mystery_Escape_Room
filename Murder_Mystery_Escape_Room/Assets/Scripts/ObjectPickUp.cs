@@ -97,6 +97,7 @@ public class ObjectPickUp : MonoBehaviour
         {
             pickUpCursor.enabled = false;
             interactCursor.enabled = false;
+            displayObject.RemoveObjectInfo(selection);
         }
     }
 

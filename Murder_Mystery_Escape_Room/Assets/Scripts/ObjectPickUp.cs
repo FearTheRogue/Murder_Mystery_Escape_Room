@@ -29,6 +29,8 @@ public class ObjectPickUp : MonoBehaviour
     public Image interactCursor;
 
     public Animator anim;
+    public AudioSource aSource;
+    public bool audioState;
 
     public bool isRequirementsMet;
 
@@ -40,6 +42,13 @@ public class ObjectPickUp : MonoBehaviour
         isObjectPickUp = false;
 
         displayObject.GetComponent<DisplayObject>();
+
+        audioState = true;
+
+        if(aSource != null)
+        {
+            return;
+        }
     }
 
     void Update()
@@ -83,6 +92,8 @@ public class ObjectPickUp : MonoBehaviour
 
                 interactCursor.enabled = true;
 
+                //GetAudioComp(selection);
+
                 ObjectWithAnimation(selection);
             }
 
@@ -100,6 +111,14 @@ public class ObjectPickUp : MonoBehaviour
             displayObject.RemoveObjectInfo(selection);
         }
     }
+
+    //void GetAudioComp(Transform selection)
+    //{
+    //    for (int i = 0; i < aSource.Length; i++)
+    //    {
+    //        aSource[i].GetComponent<AudioSource>();
+    //    }
+    //}
 
     void PickingUpObject(Transform selection)
     {
@@ -139,22 +158,38 @@ public class ObjectPickUp : MonoBehaviour
     void ObjectWithAnimation(Transform selection)
     {
         anim = selection.GetComponent<Animator>();
+        
+        //aSource2 = selection.GetComponent<AudioSource>();
 
         selectedObject = selection;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !selection.GetComponent<Object>().hasPlayed)
         {
             displayObject.DisplayObjectInfo(selection);
 
             if (selectedObject.GetComponent<Object>().isObjectInteractable)
             {
+                aSource = selection.GetComponent<Object>().firstAudioSource;
+
                 anim.SetTrigger("Active");
+                aSource.Play();
+                selection.GetComponent<Object>().hasPlayed = true;
+
             }
-         //   if (isRequirementsMet)
-           // { 
-              //  anim.SetTrigger("Active");
-            //}
-        }       
+        }
+         else if (Input.GetMouseButtonDown(0) && selection.GetComponent<Object>().hasPlayed)
+        {
+            displayObject.DisplayObjectInfo(selection);
+
+            if (selectedObject.GetComponent<Object>().isObjectInteractable)
+            {
+                aSource = selection.GetComponent<Object>().secondAudioSource;
+
+                anim.SetTrigger("Deactive");
+                aSource.Play();
+            }
+            selection.GetComponent<Object>().hasPlayed = false;
+        }
     }
 
     void ObjectToInventory(Transform selection)
@@ -163,6 +198,8 @@ public class ObjectPickUp : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
+            FindObjectOfType<AudioManager>().Play("PickingUpObject");
+            
             clues.CheckClue(selection.GetComponent<Object>().clueInt);
 
             isRequirementsMet = true;

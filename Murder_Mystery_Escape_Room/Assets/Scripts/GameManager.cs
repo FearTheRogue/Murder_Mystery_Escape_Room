@@ -51,6 +51,8 @@ public class GameManager : MonoBehaviour
 
     public void WrongSuspectLose()
     {
+        Cursor.lockState = CursorLockMode.None;
+
         Time.timeScale = 0f;
 
         WrongPanel.SetActive(true);
@@ -58,6 +60,8 @@ public class GameManager : MonoBehaviour
 
     public void TimeRanOutLose()
     {
+        Cursor.lockState = CursorLockMode.None;
+
         Time.timeScale = 0f;
 
         TimePanel.SetActive(true);

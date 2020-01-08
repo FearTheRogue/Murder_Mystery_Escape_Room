@@ -21,6 +21,11 @@ public class Object : MonoBehaviour
     [Header("Only for Object that unlock clues")]
     public int clueInt;
 
+    public AudioSource firstAudioSource;
+    public AudioSource secondAudioSource;
+
+    public bool hasPlayed;
+
     //public Image pickUpCursor;
 
     private void Start()

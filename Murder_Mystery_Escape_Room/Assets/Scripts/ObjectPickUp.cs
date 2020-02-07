@@ -59,10 +59,13 @@ public class ObjectPickUp : MonoBehaviour
 
         selection = null;
 
+        // Sends out a raycast on a given layer mask
         if (Physics.Raycast(ray, out hit, maxDistance, mask))
         {
+            // Gets the current objects transform and assigns to a Transform variable
             Transform objectHit = hit.transform;
 
+            // If the objects tag = to a pickable object
             if (objectHit.CompareTag(objectTag))
             {
                 selection = objectHit;
@@ -73,6 +76,7 @@ public class ObjectPickUp : MonoBehaviour
                 pickUpCursor.enabled = false;
             }
 
+            // If the objects tag = to an interactable object
             if (objectHit.CompareTag(interactableTag))
             {
                 selection = objectHit;
@@ -86,6 +90,7 @@ public class ObjectPickUp : MonoBehaviour
                 interactCursor.enabled = false;
             }
 
+            // If the objects tag = to an animation object
             if (objectHit.CompareTag(animationTag))
             {
                 selection = objectHit;
@@ -97,6 +102,7 @@ public class ObjectPickUp : MonoBehaviour
                 ObjectWithAnimation(selection);
             }
 
+            // If the objects tag = to an object that can be put into the inventory
             if (objectHit.CompareTag(objectToInventoryTag))
             {
                 selection = objectHit;
@@ -112,30 +118,25 @@ public class ObjectPickUp : MonoBehaviour
         }
     }
 
-    //void GetAudioComp(Transform selection)
-    //{
-    //    for (int i = 0; i < aSource.Length; i++)
-    //    {
-    //        aSource[i].GetComponent<AudioSource>();
-    //    }
-    //}
-
+    // Picking up an object
     void PickingUpObject(Transform selection)
     {
-         if (!isObjectPickUp)
+        // When the object is picked up the cursor disappears 
+        if (!isObjectPickUp)
             pickUpCursor.enabled = true;
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            OnDropObject(selection);
-        }
-
+        // If the object has already been picked up then player can put down the object
         if (isObjectPickUp)
-        {
+        {  
+            if (Input.GetMouseButtonDown(1))
+            {
+                OnDropObject(selection);
+            }
             return;
         }
         else
         {
+            // Picking up the object
             if (Input.GetMouseButtonDown(0))
             {
                 OnHoldObject(selection);
@@ -143,6 +144,7 @@ public class ObjectPickUp : MonoBehaviour
         }
     }
 
+    // Displays an object that can't be picked up information
     void InteractWithObject(Transform selection)
     {
         if (Input.GetMouseButtonDown(0))
@@ -155,8 +157,10 @@ public class ObjectPickUp : MonoBehaviour
         }
     }
 
+    // If an object has an animation attached
     void ObjectWithAnimation(Transform selection)
     {
+        // Gets the animator attached to object
         anim = selection.GetComponent<Animator>();
         
         //aSource2 = selection.GetComponent<AudioSource>();
@@ -192,14 +196,17 @@ public class ObjectPickUp : MonoBehaviour
         }
     }
 
+    // If an object can be put into the players inventory
     void ObjectToInventory(Transform selection)
     {
         PickingUpObject(selection);
 
         if (Input.GetKeyDown(KeyCode.I))
         {
+            // Cues sound
             FindObjectOfType<AudioManager>().Play("PickingUpObject");
             
+            // Checks the clue
             clues.CheckClue(selection.GetComponent<Object>().clueInt);
 
             isRequirementsMet = true;
@@ -208,41 +215,34 @@ public class ObjectPickUp : MonoBehaviour
         }
     }
 
+    // Hold the object
     void OnHoldObject(Transform selection)
     {
         pickUpCursor.enabled = false;
 
         isObjectPickUp = true;
 
+        // Sets the objects original position and rotation 
         originalPos = new Vector3(selection.transform.position.x, selection.transform.position.y, selection.transform.position.z);
         originalRot = new Quaternion(selection.transform.rotation.x, selection.transform.rotation.y, selection.transform.rotation.z, selection.transform.rotation.w);
 
+        // Sets the new objects postion 
         selection.position = theDestination.transform.position;
-        
+       
+        // Displays the objects information
         displayObject.DisplayObjectInfo(selection);
     }
 
+    // Dropping the object
     void OnDropObject(Transform selection)
     {
         isObjectPickUp = false;
 
+        // Sets the original position and rotation of the object
         selection.transform.position = originalPos;
         selection.transform.rotation = originalRot;
 
+        // Removes the object information
         displayObject.RemoveObjectInfo(selection);
-    }
-
-    //Come back to it later
-    void RotateObject(Transform selection)
-    {
-        Debug.Log("This is being calledfdjksj");
-
-        //float rotationSpeed = 500f;
-
-        //float rotX = Input.Get * Time.deltaTime * Mathf.Deg2Rad;
-        //float rotY = Input.GetAxis("Mouse Y") * Time.deltaTime * Mathf.Deg2Rad;
-
-        //selection.transform.Rotate(Vector3.up, -rotX);
-        //selection.transform.Rotate(Vector3.right, rotY);
     }
 }

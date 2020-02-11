@@ -8,6 +8,7 @@ TagManager:
   - Interact
   - Animation
   - Inventory
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - 
   - 
   - Objects
-  - 
-  - 
+  - Ground
+  - Post Processing
   - 
   - 
   - 

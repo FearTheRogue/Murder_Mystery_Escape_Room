@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        SceneManager.LoadScene("Testing");
+        SceneManager.LoadScene("Room");
     }
 
     public void RestartGame()
